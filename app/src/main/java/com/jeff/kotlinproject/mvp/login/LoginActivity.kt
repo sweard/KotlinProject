@@ -1,37 +1,45 @@
-package com.jeff.kotlinproject.mvp
+package com.jeff.kotlinproject.mvp.login
 
+import android.content.Intent
 import android.view.View
 import android.widget.Toast
 import com.jeff.kotlinproject.R
 import com.jeff.kotlinproject.base.BaseActivity
-import kotlinx.android.synthetic.main.activity_ankotest.*
+import com.jeff.kotlinproject.mvp.main.MainActivity
+import com.jeff.kotlinproject.utils.LogUtils
+import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.alert
 import org.jetbrains.anko.noButton
-import org.jetbrains.anko.toast
 import org.jetbrains.anko.yesButton
 
 /**
  * Created by jeff on 17-5-23.
  */
-class MainActivity : BaseActivity(), MainContract.View, View.OnClickListener {
+class LoginActivity : BaseActivity(), LoginContract.View, View.OnClickListener {
 
-    lateinit var presenter: MainPresenter
+    override fun toMainAct() {
+        val mainIntent = Intent(this, MainActivity::class.java)
+        startActivity(mainIntent)
+    }
+
+    lateinit var presenter: LoginPresenter
     var mToast: Toast? = null
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            R.id.login -> presenter.login(account.text.toString(), password.text.toString())
-
-            else -> showDialog("hahahah")
+            R.id.login -> {
+                presenter.login(account.text.toString(), password.text.toString())
+                LogUtils.debug("login")
+            }
         }
     }
 
     override val layoutId: Int
-        get() = R.layout.activity_ankotest
+        get() = R.layout.activity_login
 
 
     override fun init() {
-        presenter = MainPresenter(this)
+        presenter = LoginPresenter(this)
 
         login.setOnClickListener(this)
         account.setOnClickListener(this)
@@ -61,10 +69,15 @@ class MainActivity : BaseActivity(), MainContract.View, View.OnClickListener {
     override fun showDialog(msg: String) {
         alert(msg) {
             title = "标题"
-            yesButton { showToast("OK") }
+            yesButton { }
 
-            noButton { toast("NO") }
+            noButton { }
         }.show()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        presenter.stop()
     }
 
 }

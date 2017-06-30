@@ -11,7 +11,7 @@ import com.jeff.kotlinproject.App
 object NetworkUtil {
 
     val isNetworkConnected: Boolean get() {
-            val connMgr = App.instance.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+            val connMgr = App.instance().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
             val networkInfo = connMgr.activeNetworkInfo
             return networkInfo.isConnected
         }

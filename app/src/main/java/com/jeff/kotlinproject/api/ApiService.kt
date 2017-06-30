@@ -26,4 +26,7 @@ interface ApiService {
     @FormUrlEncoded
     @POST("/api/account/EditUser")
     fun uploadStrs(@FieldMap fields: Map<String, String>): Observable<JSONObject>
+
+    @GET("api/login/getimg")
+    fun getBannerIMGs(): Observable<JSONObject>
 }

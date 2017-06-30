@@ -1,8 +1,8 @@
-package com.jeff.kotlinproject.mvp
+package com.jeff.kotlinproject.mvp.login
 
 import com.alibaba.fastjson.JSONObject
 import com.jeff.kotlinproject.utils.LogUtils
-import com.jeff.kotlinproject.utils.MD5Util
+import com.jeff.kotlinproject.utils.MD5UtilJava
 import com.jeff.kotlinproject.utils.RetrofitClient
 import com.rxdemo.jeff.rxdemo.utils.network.ApiService
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -13,19 +13,19 @@ import io.reactivex.schedulers.Schedulers
 /**
  * Created by jeff on 17-6-29.
  */
-class MainPresenter(val view: MainActivity) : MainContract.Presenter {
+class LoginPresenter(val view: LoginActivity) : LoginContract.Presenter {
 
-    var apiService: ApiService ?= null
-    var compositeDisposable: CompositeDisposable? = null
+    lateinit var apiService: ApiService
+    lateinit var compositeDisposable: CompositeDisposable
 
 
     override fun start() {
-        apiService = RetrofitClient.instance.api
+        apiService = RetrofitClient.instance().api
         compositeDisposable = CompositeDisposable()
     }
 
     override fun stop() {
-        compositeDisposable?.clear()
+        compositeDisposable.clear()
     }
 
     override fun login(account: String, password: String) {
@@ -34,13 +34,14 @@ class MainPresenter(val view: MainActivity) : MainContract.Presenter {
         } else if (password.isEmpty()) {
             view.showDialog("密码不能悟空")
         } else {
-            val urlcode = MD5Util.getLowerMD5(account + password)!!.substring(8, 24).toString()
-            val diaposable = apiService?.login(1, account, urlcode)
-                    ?.subscribeOn(Schedulers.io())
-                    ?.observeOn(AndroidSchedulers.mainThread())
-                    ?.subscribeWith(object : DisposableObserver<JSONObject>() {
+            val urlcode = MD5UtilJava.getLowerMD5(account + password)!!.substring(8, 24)
+            val diaposable = apiService.login(1, account, urlcode)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribeWith(object : DisposableObserver<JSONObject>() {
                         override fun onError(e: Throwable?) {
-                            LogUtils.debug("onError")
+
+                            LogUtils.debug(e.toString())
                         }
 
                         override fun onComplete() {
@@ -49,13 +50,17 @@ class MainPresenter(val view: MainActivity) : MainContract.Presenter {
 
                         override fun onNext(value: JSONObject?) {
                             LogUtils.debug(value?.toJSONString() as String)
+                            if (value.getInteger("code") === 0) {
+                                view.toMainAct()
+                            } else {
+                                LogUtils.debug(value.getInteger("code").toString())
+                            }
                         }
 
                     })
-            compositeDisposable?.add(diaposable)
+            compositeDisposable.add(diaposable)
 
         }
-
 
     }
 }

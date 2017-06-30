@@ -62,13 +62,5 @@ abstract class BaseFragment : Fragment(), View.OnTouchListener {
 
     protected fun getDatas(arguments: Bundle) {}
 
-    /**
-     * msg:提示信息
-     * type:提示类型
-     */
-    protected fun showDialog(msg: String, type: Int) {}
 
-    protected fun showToast(msg: String) {}
-
-    protected fun showProgressDialog(msg:String){}
 }

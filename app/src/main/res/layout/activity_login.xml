@@ -8,14 +8,18 @@
         android:id="@+id/account"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="账号" />
+        android:hint="账号"
+        android:maxLines="1"
+        android:text="18503088987" />
 
 
     <EditText
         android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="密码" />
+        android:hint="密码"
+        android:maxLines="1"
+        android:text="123456" />
 
     <Button
         android:id="@+id/login"

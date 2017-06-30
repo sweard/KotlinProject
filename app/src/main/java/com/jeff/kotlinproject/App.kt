@@ -19,8 +19,9 @@ class App : Application() {
 
 
     companion object {
-        val instance: Context = Single.context
+        fun instance(): Context {
+            return Single.context
+        }
     }
-
 
 }

@@ -20,7 +20,9 @@ import java.util.concurrent.TimeUnit
  * Created by jeff on 17-5-15.
  */
 
-class RetrofitClient//初始化
+class RetrofitClient
+
+//初始化
 private constructor() {
 
     var api: ApiService
@@ -40,7 +42,7 @@ private constructor() {
                 // 支持HTTPS
                 .connectionSpecs(Arrays.asList(ConnectionSpec.CLEARTEXT, ConnectionSpec.MODERN_TLS)) //明文Http与比较新的Https
                 // cookie管理
-                .cookieJar(PersistentCookieJar(SetCookieCache(), SharedPrefsCookiePersistor(App.instance)))
+                .cookieJar(PersistentCookieJar(SetCookieCache(), SharedPrefsCookiePersistor(App.instance())))
 
         // 添加各种插入器
         addInterceptor(builder)
@@ -63,7 +65,7 @@ private constructor() {
         builder.addInterceptor(HttpHeaderInterceptor())
 
         // 添加缓存控制策略
-        val cacheDir = App.instance.externalCacheDir
+        val cacheDir = App.instance().externalCacheDir
         val cache = Cache(cacheDir!!, (1024 * 1024 * 50).toLong())
         builder.cache(cache).addInterceptor(HttpCacheInterceptor())
 
@@ -78,16 +80,17 @@ private constructor() {
 
     companion object {
 
-        var client: RetrofitClient? = null
+//        var client: RetrofitClient? = null
 
         //获取单例
-        val instance: RetrofitClient
-            get() {
-                if (client === null) {
-                    client = RetrofitClient()
-                }
-                return client!!
+        fun instance(): RetrofitClient {
+            if (Single.client === null) {
+                Single.client = RetrofitClient()
+                LogUtils.debug("生成RetrofitClient")
             }
+            return Single.client!!
+        }
+
         /* fun instance(): RetrofitClient {
              if (Single.client === null) {
                  Single.client = RetrofitClient()
@@ -99,7 +102,7 @@ private constructor() {
 
 
     object Single {
-        lateinit var client: RetrofitClient
+        var client: RetrofitClient? = null
     }
 
 }
