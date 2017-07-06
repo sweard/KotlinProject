@@ -27,7 +27,7 @@ class MainPresenter(val view: MainActivity) : MainContract.Presenter {
 
 
     override fun getIMGs() {
-        apiService.getBannerIMGs()
+        val disposa = apiService.getBannerIMGs()
                 .compose(RxUtils.io_main())
                 .subscribeWith(object : DisposableObserver<JSONObject>() {
                     override fun onComplete() {
@@ -50,6 +50,9 @@ class MainPresenter(val view: MainActivity) : MainContract.Presenter {
                     }
 
                 })
+
+        compositeDisposable.add(disposa)
+
 
     }
 }
