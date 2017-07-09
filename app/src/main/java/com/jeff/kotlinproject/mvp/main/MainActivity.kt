@@ -1,15 +1,28 @@
 package com.jeff.kotlinproject.mvp.main
 
+import android.util.Log
+import android.view.View
 import com.jeff.kotlinproject.R
 import com.jeff.kotlinproject.base.BaseActivity
 import com.jeff.kotlinproject.utils.LogUtils
-import com.youth.banner.listener.OnBannerListener
 import kotlinx.android.synthetic.main.activity_main.*
 
 /**
  * Created by .F on 2017/6/30.
  */
-class MainActivity : BaseActivity(), MainContract.View {
+class MainActivity : BaseActivity(), MainContract.View, View.OnClickListener {
+    override fun onClick(v: View?) {
+        when (v?.id) {
+            R.id.add -> presenter.add()
+            R.id.delete -> presenter.delete()
+            R.id.change -> presenter.change()
+            R.id.search -> {
+                LogUtils.debug("search")
+                val list = presenter.search()
+                for (i in list.indices) Log.e("name",list[i].name)
+            }
+        }
+    }
 
     lateinit var presenter: MainPresenter
 
@@ -30,6 +43,12 @@ class MainActivity : BaseActivity(), MainContract.View {
         presenter = MainPresenter(this)
 
         presenter.getIMGs()
+
+        LogUtils.debug("init()")
+        add.setOnClickListener(this)
+        delete.setOnClickListener(this)
+        change.setOnClickListener(this)
+        search.setOnClickListener(this)
     }
 
     override fun onStart() {

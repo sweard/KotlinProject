@@ -13,5 +13,13 @@ interface MainContract {
 
     interface Presenter:BasePresenter {
         fun getIMGs()
+
+        fun add()
+
+        fun delete()
+
+        fun change()
+
+        fun search():List<Dog>
     }
 }
