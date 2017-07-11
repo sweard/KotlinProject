@@ -33,6 +33,21 @@ class DataBaseUtil(context: Context) {
         book1.put("price", 19.95)
         val insert1 = database?.insert("Book", null, book1)
 
+        database?.execSQL(
+                "insert into Book(bookname, author, pages, price) values('The Da Vinci Code', 'Dan Brown', 454, 16.96)");
+        database?.execSQL(
+                "insert into Book(bookname, author, pages, price) values('The Lost Symbol', 'Dan Brown', 510, 19.95)");
+        database?.execSQL(
+                "insert into Book(bookname, author, pages, price) values('piao liu chuan shuo', 'Baby lin', 189, 12.99)");
+        database?.execSQL(
+                "insert into Book(bookname, author, pages, price) values('lv bing xun chuan qi', 'Baby lin', 470, 10.99)");
+        database?.execSQL(
+                "insert into Book(bookname, author, pages, price) values('bing yu huo zhi ge', 'Dan Brown', 624, 10.99)");
+        database?.execSQL(
+                "insert into Book(bookname, author, pages, price) values('bing yu huo zhi ge', 'Dan Brown', 624, 10.99)");
+        database?.execSQL(
+                "insert into Book(bookname, author, pages, price) values('wo yao du shu', 'Dan Brown', 510, 10.99)");
+
         LogUtils.debug("add")
         return insert
     }
