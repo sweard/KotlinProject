@@ -52,7 +52,7 @@ private constructor() {
                 .client(builder.build())
                 .addConverterFactory(FastJsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .baseUrl(BASE_URL)
+                .baseUrl(LOCAL_URL)
                 .build()
 
         // 创建API接口类

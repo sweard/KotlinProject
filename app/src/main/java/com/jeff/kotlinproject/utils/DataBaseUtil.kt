@@ -64,7 +64,7 @@ class DataBaseUtil(context: Context) {
 
     fun delete(): Int? {
         var database = helper?.readableDatabase
-        val delete = database?.delete("Book", "pages > ?", arrayOf("500"))
+        val delete = database?.delete("Book", "author = ?", arrayOf("Dan Brown"))
         LogUtils.debug(delete.toString())
         return delete
     }
@@ -73,7 +73,7 @@ class DataBaseUtil(context: Context) {
     fun query() {
         LogUtils.debug("search")
         var database = helper?.readableDatabase
-        var cursor = database?.query("Book", null, "price = ?", arrayOf("10.99"), "bookname", "author='Dan Brown'", "author")
+        var cursor = database?.query("Book", null, "author = ?", arrayOf("Dan Brown"), null, null, "author")
         if (cursor != null) {
             LogUtils.debug("cursor!=null")
             if (cursor.moveToFirst()) {

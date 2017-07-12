@@ -29,4 +29,7 @@ interface ApiService {
 
     @GET("api/login/getimg")
     fun getBannerIMGs(): Observable<JSONObject>
+
+    @POST("ajax/Test1.ashx")
+    fun uploadJson(@Body jsonBody: RequestBody): Observable<JSONObject>
 }
