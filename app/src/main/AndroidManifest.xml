@@ -33,9 +33,18 @@
             android:name=".mvp.login.LoginActivity"
             android:launchMode="singleTop" />
 
+        <activity
+            android:name=".mvp.rvdemo.RecyclerViewContainer"
+            android:launchMode="singleTop" />
+
         <service
             android:name=".service.MyService"
             android:exported="false" />
+
+        <service
+            android:name=".service.UselessService"
+            android:exported="false" />
+
     </application>
 
 </manifest>

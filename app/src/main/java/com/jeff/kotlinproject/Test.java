@@ -29,7 +29,7 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class Test extends Service {
 
-    private IBinder myBinder;
+    private IBinder myBinder,bBinder;
 
     private Random mGenerator;
 
@@ -74,7 +74,11 @@ public class Test extends Service {
     }
 
     public int getRandomNumber() {
+        Integer k = 10;
+
+
         return mGenerator.nextInt(100);
+
     }
 
 

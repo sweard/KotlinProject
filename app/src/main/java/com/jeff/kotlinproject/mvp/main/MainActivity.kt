@@ -1,10 +1,12 @@
 package com.jeff.kotlinproject.mvp.main
 
+import android.content.Intent
 import android.util.Base64
 import android.util.Log
 import android.view.View
 import com.jeff.kotlinproject.R
 import com.jeff.kotlinproject.base.BaseActivity
+import com.jeff.kotlinproject.service.UselessService
 import com.jeff.kotlinproject.utils.AESUtils
 import com.jeff.kotlinproject.utils.DataBaseUtil
 import com.jeff.kotlinproject.utils.LogUtils
@@ -26,14 +28,18 @@ class MainActivity : BaseActivity(), MainContract.View, View.OnClickListener {
         when (v?.id) {
             R.id.add -> baseUtil.add()
             R.id.delete -> baseUtil.delete()
-            R.id.change -> baseUtil.updateData()
+            R.id.change -> {
+//                baseUtil.updateData()
+                val intent = Intent(this,UselessService::class.java)
+                startService(intent)
+            }
             R.id.search -> {
                 /* val list = presenter.search()
                  for (i in list.indices) Log.e("name", list[i].name)*/
 //                baseUtil.query()
                 val ivParam = AESUtils.ivParameter()
                 LogUtils.debug(ivParam)
-                val enStr = AESUtils.encryptAES(content, key, AESUtils.ivParameter())
+                val enStr = AESUtils.encryptAES(content, key, ivParam)
                 LogUtils.debug(enStr)
 
                 var deStr = AESUtils.aesDecryptString(enStr, key, ivParam)
@@ -68,6 +74,8 @@ class MainActivity : BaseActivity(), MainContract.View, View.OnClickListener {
         delete.setOnClickListener(this)
         change.setOnClickListener(this)
         search.setOnClickListener(this)
+
+
     }
 
     override fun onStart() {
