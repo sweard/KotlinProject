@@ -42,7 +42,7 @@ class MainActivity : BaseActivity(), MainContract.View, View.OnClickListener {
                 val enStr = AESUtils.encryptAES(content, key, ivParam)
                 LogUtils.debug(enStr)
 
-                var deStr = AESUtils.aesDecryptString(enStr, key, ivParam)
+                var deStr = AESUtils.aesDecryptString("r6Z9SVwn2KFY4juMAtS/KeNPlFxYw5K9V+eFRZy3zhCNQHhMnArS4h4uKzLv9seV9YtnfXS8+ZRW6h14UNBLJA==", key, "BSFOD4FJ9YNFH98E")
                 LogUtils.debug(deStr)
 
 //                presenter.uploadTest()

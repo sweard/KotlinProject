@@ -22,11 +22,12 @@ class RecyclerViewContainer : BaseActivity() {
 
     override fun init() {
         val rd = arrayOf("头布局", "单布局", "多图")
+        val title = arrayOf("Title", "", "")
         var list: ArrayList<News> = ArrayList()
         for (i in 0..15) {
             val random = Random()
             val k = random.nextInt(3)
-            val news = News(rd[k])
+            val news = News(rd[1], title[k])
             LogUtils.debug(news.type as String)
             list.add(news)
         }
@@ -36,7 +37,12 @@ class RecyclerViewContainer : BaseActivity() {
         rv.layoutManager = LinearLayoutManager(this)
         val adapter = MyAdapter(list, this)
         rv.adapter = adapter
-        rv.addItemDecoration(SpacesItemDecoration(24))
+        rv.addItemDecoration(SpacesItemDecoration(24, this, object : SpacesItemDecoration.DecorationCallback {
+            override fun getTitle(position: Int): String {
+                return list[position].title
+            }
+
+        }))
         adapter.setOnItemClickListener(object : MyAdapter.OnItemClickListener {
             override fun onItemLongClick(view: View, holder: RecyclerView.ViewHolder, position: Int): Boolean {
                 return false

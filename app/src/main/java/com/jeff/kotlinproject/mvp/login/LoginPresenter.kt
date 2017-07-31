@@ -22,6 +22,8 @@ class LoginPresenter(val view: LoginActivity) : LoginContract.Presenter {
     override fun start() {
         apiService = RetrofitClient.instance().api
         compositeDisposable = CompositeDisposable()
+
+
     }
 
     override fun stop() {

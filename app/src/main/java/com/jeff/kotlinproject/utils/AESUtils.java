@@ -26,7 +26,7 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class AESUtils {
 
-    private static final String aa = "1234561234561234";
+ /*   private static final String aa = "1234561234561234";
 
     public static String encrypt(String seed, String cleartext) throws Exception {
         byte[] rawKey = getRawKey(seed.getBytes());
@@ -97,7 +97,7 @@ public class AESUtils {
 
     private static void appendHex(StringBuffer sb, byte b) {
         sb.append(HEX.charAt((b >> 4) & 0x0f)).append(HEX.charAt(b & 0x0f));
-    }
+    }*/
 
 
     public static String ivParameter() {

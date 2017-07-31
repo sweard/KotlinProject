@@ -11,6 +11,7 @@ public class Dog extends RealmObject {
     private String name;
     private int age;
 
+
     @PrimaryKey
     private String id;
 
@@ -37,5 +38,10 @@ public class Dog extends RealmObject {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+
+    public static synchronized String getText() {
+        return 656 + "";
     }
 }

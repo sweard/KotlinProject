@@ -34,8 +34,9 @@
             android:launchMode="singleTop" />
 
         <activity
-            android:name=".mvp.rvdemo.RecyclerViewContainer"
+            android:name=".event.EventActivity"
             android:launchMode="singleTop" />
+
 
         <service
             android:name=".service.MyService"
