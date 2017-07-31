@@ -20,6 +20,8 @@ interface ApiService {
     @POST("/api/account/UploadImages")
     fun uploadFile(@Part body: MultipartBody.Part): Observable<JSONObject>
 
+
+
     @POST("/api/account/EditUser")
     fun uploadStr(@Body body: RequestBody): Observable<JSONObject>
 
