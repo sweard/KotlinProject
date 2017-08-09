@@ -1,0 +1,26 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <style>
+        #playVideo{
+            color:#FF4567;
+            font-size:40px;
+        }
+    </style>
+    <script>
+        var play = function (){
+            var videoId = "65411";
+            var title = "神偷奶爸3预告片";
+            var videoUrl = "http://vfx.mtime.cn/Video/2017/03/15/mp4/170315003647537910.mp4";
+            javascript:android.playVideo(videoId,title,videoUrl);
+        }
+    </script>
+</head>
+<body>
+<div align="center">这是H5页面</div>
+<!--调用Android原生代码:
+    onclick = "window.+Android传过来的对象名.+对象中的方法"
+-->
+<input id="playVideo" type="button" value="点击播放视频" onclick="play()"/>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <style>
+        #content{
+            color:#FF4567;
+            font-size:40px;
+        }
+    </style>
+    <script type="text/javascript">
+    function javaCallJs(arg){
+         document.getElementById("content").innerHTML =
+             ("欢迎："+arg );
+    }
+    </script>
+</head>
+<body>
+<div align="left" id="content"></div>
+<div align="left">这是H5页面</div>
+<p><img width="240" height="320"
+        src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490433744477&di=62977511a6e3e7d076629e2114005b0a&imgtype=0&src=http%3A%2F%2Fc.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F6f061d950a7b0208e95284e160d9f2d3572cc813.jpg">
+</p>
+<!--调用Android原生代码:
+    onclick = "window.+Android传过来的对象名.+对象中的方法"
+-->
+<input type="button" value="点击Android被调用" onclick="window.Android.showToast()"/>
+</body>
+</html>

@@ -2,6 +2,7 @@ package com.jeff.kotlinproject
 
 import android.app.Application
 import android.content.Context
+import com.baidu.mapapi.SDKInitializer
 import io.realm.Realm
 import io.realm.RealmConfiguration
 
@@ -20,6 +21,7 @@ class App : Application() {
         Realm.init(this)
         val config = RealmConfiguration.Builder().build()
         Realm.setDefaultConfiguration(config)
+        SDKInitializer.initialize(applicationContext)
     }
 
 
