@@ -12,5 +12,7 @@ interface BleContract {
 
     interface Presenter {
         fun checkBle():Boolean
+
+        fun startScanBle()
     }
 }

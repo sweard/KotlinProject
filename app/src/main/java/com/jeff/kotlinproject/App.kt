@@ -24,7 +24,6 @@ class App : Application() {
         SDKInitializer.initialize(applicationContext)
     }
 
-
     companion object {
         fun instance(): Context {
             return Single.context

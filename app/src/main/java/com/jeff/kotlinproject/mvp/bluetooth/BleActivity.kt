@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.Toast
 import com.jeff.kotlinproject.R
 import com.jeff.kotlinproject.base.BaseActivity
+import com.jeff.kotlinproject.utils.LogUtils
 import kotlinx.android.synthetic.main.activity_ble.*
 import org.jetbrains.anko.act
 
@@ -21,10 +22,19 @@ class BleActivity : BaseActivity(), BleContract.View, View.OnClickListener {
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            R.id.checkble -> bleStatus = presenter.checkBle()
-            R.id.scanble -> {
 
+            R.id.checkble -> {
+                bleStatus = presenter.checkBle()
+                LogUtils.debug("check")
+                LogUtils.error("check")
             }
+
+            R.id.scanble -> if (bleStatus) {
+                presenter.startScanBle()
+            } else {
+                LogUtils.debug("bleStatus=false")
+            }
+
 
         }
     }

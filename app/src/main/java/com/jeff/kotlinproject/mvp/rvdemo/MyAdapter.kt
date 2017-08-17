@@ -44,7 +44,7 @@ class MyAdapter(val list: ArrayList<News>, val context: Context) : RecyclerView.
             }
         }
         setListener(holder!!)
-        return holder!!
+        return holder
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {

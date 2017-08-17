@@ -31,7 +31,7 @@ class DataBaseUtil(context: Context) {
         book1.put("author", "Dan Brown")
         book1.put("pages", 510)
         book1.put("price", 19.95)
-        val insert1 = database?.insert("Book", null, book1)
+//        val insert1 = database?.insert("Book", null, book1)
 
         database?.execSQL(
                 "insert into Book(bookname, author, pages, price) values('The Da Vinci Code', 'Dan Brown', 454, 16.96)");
